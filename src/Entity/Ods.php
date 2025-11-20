@@ -44,6 +44,15 @@ class Ods
     #[ORM\ManyToMany(targetEntity: Users::class, inversedBy: 'ods')]
     private Collection $users;
 
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTime $hora = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lugar = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $link = null;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -158,6 +167,42 @@ class Ods
     public function removeUser(Users $user): static
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    public function getHora(): ?\DateTime
+    {
+        return $this->hora;
+    }
+
+    public function setHora(\DateTime $hora): static
+    {
+        $this->hora = $hora;
+
+        return $this;
+    }
+
+    public function getLugar(): ?string
+    {
+        return $this->lugar;
+    }
+
+    public function setLugar(string $lugar): static
+    {
+        $this->lugar = $lugar;
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(?string $link): static
+    {
+        $this->link = $link;
 
         return $this;
     }

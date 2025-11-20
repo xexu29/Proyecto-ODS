@@ -28,18 +28,20 @@ class ApiOdsController extends AbstractController
                 ];
             }
 
-            $data[] = [
-                "id" => $ods->getId(),
-                "nom" => $ods->getNom(),
-                "descripcion" => $ods->getDescripcion(),
-                "imagen_url" => $ods->getImagenUrl(),
-                "fecha" => $ods->getFecha()?->format('Y-m-d'), // para React
-                "etiqueta1" => $ods->getEtiqueta1(),
-                "etiqueta2" => $ods->getEtiqueta2(),
-                "etiqueta3" => $ods->getEtiqueta3(),
-                
-            ];
-        }
+                $data[] = [
+                    "id" => $ods->getId(),
+                    "nom" => $ods->getNom(),
+                    "descripcion" => $ods->getDescripcion(),
+                    "imagen_url" => $ods->getImagenUrl(),
+                    "fecha" => $ods->getFecha()?->format('Y-m-d'),
+                    "hora" => $ods->getHora()?->format('H:i:s'),
+                    "lugar" => $ods->getLugar(),
+                    "link" => $ods->getLink(),
+                    "etiqueta1" => $ods->getEtiqueta1(),
+                    "etiqueta2" => $ods->getEtiqueta2(),
+                    "etiqueta3" => $ods->getEtiqueta3(),
+                    ];
+                }
 
         return $this->json($data);
     }
